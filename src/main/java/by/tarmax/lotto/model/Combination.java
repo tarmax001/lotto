@@ -2,18 +2,19 @@ package by.tarmax.lotto.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Combination {
-    private Set<LocalDate> dates = new HashSet<>();
-    Set<Integer> set = new TreeSet<>();
+    private final Set<LocalDate> dates = new HashSet<>();
+    private Set<Integer> set = new TreeSet<>();
 
     public Combination() {
     }
 
-    public Combination(Integer id, LocalDate date, TreeSet<Integer> set) {
-        this.set = set;
+    public Set<LocalDate> getDates() {
+        return dates;
     }
 
     public void setDate(LocalDate date) {
@@ -43,23 +44,13 @@ public class Combination {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Combination couple = (Combination) o;
+        Combination combination = (Combination) o;
 
-        return set != null ? set.equals(couple.set) : couple.set == null;
+        return Objects.equals(set, combination.set);
     }
 
     @Override
     public int hashCode() {
         return set != null ? set.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return set.toString();
-//        return
-//                "Combination{" +
-//                "date=" + date +
-//                ", set=" + set +
-//                '}';
     }
 }
