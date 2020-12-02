@@ -11,13 +11,15 @@ public class BidTo {
     private LocalDate playDate;
     private LocalDate date;
     private Integer gain;
+    private Double amount;
     private Set<Ball> balls;
 
-    public BidTo(LocalDate playDate, LocalDate date, Integer gain, Ball... balls) {
+    public BidTo(LocalDate playDate, LocalDate date, Integer gain, Double amount, Ball... balls) {
         this.playDate = playDate;
         this.date = date;
-        this.balls = new TreeSet<>(Arrays.asList(balls));
         this.gain = gain;
+        this.amount = amount;
+        this.balls = new TreeSet<>(Arrays.asList(balls));
     }
 
     public LocalDate getPlayDate() {

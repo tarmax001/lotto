@@ -6,11 +6,13 @@ import java.util.Set;
 public class Bid {
     private LocalDate playDate;
     private LocalDate bidDate;
+    private Double amount;
     private Set<Integer> balls;
 
-    public Bid(LocalDate playDate, LocalDate bidDate, Integer... balls) {
+    public Bid(LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
         this.playDate = playDate;
         this.bidDate = bidDate;
+        this.amount = amount;
         this.balls = Set.of(balls);
     }
 

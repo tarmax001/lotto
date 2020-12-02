@@ -21,16 +21,16 @@ public class Main {
     );
 
     public static List<Bid> bids = List.of(
-            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 19, 30, 1),
-            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 19, 1, 58),
-            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 44, 1, 58),
-            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 42, 47, 13),
-            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 19, 30, 58),
-            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 2, 30, 58)
+            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 2.0, 30, 1),
+            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 1.0, 1, 58),
+            new Bid(LocalDate.of(2020, 11, 23), LocalDate.of(2020, 11, 22), 2.0, 1, 58),
+            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 1.0, 47, 13),
+            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 2.0, 30, 58, 55),
+            new Bid(LocalDate.of(2020, 11, 24), LocalDate.of(2020, 11, 22), 1.0, 30, 58)
     );
 
     public static void main(String[] args) {
-        List<BidTo> withGain = BidUtil.getWithGain(bids);
+        List<BidTo> withGain = BidUtil.getWithGain(bids, kenoPlays);
         withGain.forEach(System.out::println);
 
         Collection<Combination> pairsWithDates = PairUtil.getPairsWithDates(kenoPlays);
