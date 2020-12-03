@@ -1,6 +1,6 @@
 package by.tarmax.lotto.model;
 
-public class Ball implements Comparable{
+public class Ball implements Comparable<Ball>{
     private Integer value;
     private boolean isVon;
 
@@ -26,8 +26,14 @@ public class Ball implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        Ball ball = (Ball) o;
+    public int compareTo(Ball ball) {
         return value - ball.getValue();
+    }
+
+    @Override
+    public String toString() {
+        return "Ball{ " + value +
+                ", isVon=" + isVon +
+                '}';
     }
 }

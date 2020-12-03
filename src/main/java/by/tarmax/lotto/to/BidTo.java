@@ -4,22 +4,23 @@ import by.tarmax.lotto.model.Ball;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class BidTo {
     private LocalDate playDate;
     private LocalDate date;
-    private Integer gain;
+    private Double gain;
     private Double amount;
-    private Set<Ball> balls;
+    private final Set<Ball> balls;
 
-    public BidTo(LocalDate playDate, LocalDate date, Integer gain, Double amount, Ball... balls) {
+    public BidTo(LocalDate playDate, LocalDate date, Double gain, Double amount, Collection<Ball> balls) {
         this.playDate = playDate;
         this.date = date;
         this.gain = gain;
         this.amount = amount;
-        this.balls = new TreeSet<>(Arrays.asList(balls));
+        this.balls = new TreeSet<>(balls);
     }
 
     public LocalDate getPlayDate() {
@@ -42,24 +43,29 @@ public class BidTo {
         return balls;
     }
 
-    public void setBalls(Set<Ball> balls) {
-        this.balls = balls;
-    }
-
-    public Integer getGain() {
+    public Double getGain() {
         return gain;
     }
 
-    public void setGain(Integer gain) {
+    public void setGain(Double gain) {
         this.gain = gain;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     @Override
     public String toString() {
-        return "Bid{" +
+        return "BidTo{" +
                 "playDate=" + playDate +
                 ", date=" + date +
                 ", gain=" + gain +
+                ", amount=" + amount +
                 ", balls=" + balls +
                 '}';
     }

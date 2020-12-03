@@ -39,4 +39,12 @@ public class Bid {
     public void setBalls(Set<Integer> balls) {
         this.balls = balls;
     }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 }
