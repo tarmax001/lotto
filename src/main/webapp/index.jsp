@@ -8,6 +8,8 @@
 <hr>
 <ul>
     <li><a href="users">Users</a></li>
+    <li><a href="bids">Bids</a></li>
+    <li><a href="pairs">Pairs</a></li>
 </ul>
 </body>
 </html>
