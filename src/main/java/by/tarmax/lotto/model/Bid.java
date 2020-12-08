@@ -3,13 +3,18 @@ package by.tarmax.lotto.model;
 import java.time.LocalDate;
 import java.util.Set;
 
-public class Bid {
+public class Bid extends AbstractBaseEntity {
     private LocalDate playDate;
     private LocalDate bidDate;
     private Double amount;
     private Set<Integer> balls;
 
     public Bid(LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
+        this(null, playDate, bidDate, amount, balls);
+    }
+
+    public Bid(Integer id, LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
+        super(id);
         this.playDate = playDate;
         this.bidDate = bidDate;
         this.amount = amount;

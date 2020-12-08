@@ -1,14 +1,14 @@
 package by.tarmax.lotto.to;
 
+import by.tarmax.lotto.model.AbstractBaseEntity;
 import by.tarmax.lotto.model.Ball;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class BidTo {
+public class BidTo extends AbstractBaseEntity {
     private LocalDate playDate;
     private LocalDate date;
     private Double gain;
@@ -16,6 +16,11 @@ public class BidTo {
     private final Set<Ball> balls;
 
     public BidTo(LocalDate playDate, LocalDate date, Double gain, Double amount, Collection<Ball> balls) {
+        this(null, playDate, date, gain, amount, balls);
+    }
+
+    public BidTo(Integer id, LocalDate playDate, LocalDate date, Double gain, Double amount, Collection<Ball> balls) {
+        super(id);
         this.playDate = playDate;
         this.date = date;
         this.gain = gain;
