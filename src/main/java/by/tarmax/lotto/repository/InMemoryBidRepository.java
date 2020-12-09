@@ -6,6 +6,7 @@ import by.tarmax.lotto.model.Bid;
 import by.tarmax.lotto.util.BidUtil;
 import by.tarmax.lotto.web.BidServlet;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+@Repository
 public class InMemoryBidRepository implements BidRepository{
     private static final Logger log = getLogger(BidServlet.class);
 

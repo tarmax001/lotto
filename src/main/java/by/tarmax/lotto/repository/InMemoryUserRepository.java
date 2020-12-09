@@ -3,11 +3,13 @@ package by.tarmax.lotto.repository;
 import by.tarmax.lotto.model.AbstractBaseEntity;
 import by.tarmax.lotto.model.User;
 import by.tarmax.lotto.util.UserUtil;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class InMemoryUserRepository implements UserRepository{
     Map<Integer, User> users = new ConcurrentHashMap<>();
 
@@ -21,13 +23,15 @@ public class InMemoryUserRepository implements UserRepository{
             int id = AbstractBaseEntity.counter.incrementAndGet();
             user.setId(id);
             users.put(id, user);
+            return user;
         }
-        return users.computeIfAbsent(user.getId(), u -> users.put(user.getId(), user));
+        return users.computeIfAbsent(user.getId(), u -> users.put(user.getId(), user)); //TODO check
+//        return users.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override
     public boolean delete(int id) {
-        return users.remove(id, users.get(id));
+        return users.remove(id) != null;
     }
 
     @Override

@@ -2,15 +2,21 @@ package by.tarmax.lotto.service;
 
 import by.tarmax.lotto.model.User;
 import by.tarmax.lotto.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static by.tarmax.lotto.util.ValidationUtil.checkNotFound;
 import static by.tarmax.lotto.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class UserService {
 
-    private UserRepository repository;
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public User create(User user) {
         return repository.save(user);
