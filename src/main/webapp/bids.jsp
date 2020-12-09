@@ -19,6 +19,7 @@
     <h3><a href="index.jsp">Home</a></h3>
     <hr/>
     <h2>Bids</h2>
+    <a href="bids?action=create">Create</a>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
@@ -27,6 +28,8 @@
             <th>Bid Amount</th>
             <th>Gain</th>
             <th>Balls</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${bids}" var="bid">
@@ -40,6 +43,8 @@
                     <jsp:useBean id="ball" type="by.tarmax.lotto.model.Ball"/>
                     <strong class="${ball.von ? 'won' : 'normal'}">${ball.value} </strong>
                 </c:forEach> </td>
+                <td><a href="bids?action=update&id=${bid.id}">Update</a></td>
+                <td><a href="bids?action=delete&id=${bid.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

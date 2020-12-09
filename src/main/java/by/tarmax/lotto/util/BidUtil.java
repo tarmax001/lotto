@@ -6,10 +6,7 @@ import by.tarmax.lotto.model.Keno;
 import by.tarmax.lotto.to.BidTo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BidUtil {
@@ -45,7 +42,7 @@ public class BidUtil {
     private BidUtil() {
     }
 
-    public static List<BidTo> getWithGain(List<Bid> bids, List<Keno> kenoPlays) {
+    public static List<BidTo> getWithGain(Collection<Bid> bids, List<Keno> kenoPlays) {
         List<BidTo> kenoBidTos = new ArrayList<>();
         for (Bid bid : bids) {
             Keno kenoPlay = kenoPlays.stream()
@@ -57,7 +54,7 @@ public class BidUtil {
                     .map(ball -> new Ball(ball, kenoPlay != null && kenoPlay.getBalls().contains(ball)))
                     .collect(Collectors.toSet());
 
-            kenoBidTos.add(new BidTo(bid.getPlayDate(), bid.getBidDate(), getGain(balls, bid.getAmount()), bid.getAmount(), balls));
+            kenoBidTos.add(new BidTo(bid.getId(), bid.getPlayDate(), bid.getBidDate(), getGain(balls, bid.getAmount()), bid.getAmount(), balls));
         }
         return kenoBidTos;
     }

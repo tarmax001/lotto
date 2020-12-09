@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PairUtil {
-    private static final List<Integer> ALL_KENO_BALLS = IntStream.range(1, 61).boxed().collect(Collectors.toList());
+    public static final List<Integer> ALL_KENO_BALLS = IntStream.range(1, 61).boxed().collect(Collectors.toList());
     public static LocalDate currentDate = LocalDate.now().minusDays(1);
     public static int step = 30;
     public static int period = 180;

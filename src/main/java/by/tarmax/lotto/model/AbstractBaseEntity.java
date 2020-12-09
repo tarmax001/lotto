@@ -20,6 +20,6 @@ public abstract class AbstractBaseEntity {
     }
 
     public boolean isNew() {
-        return id != null;
+        return id == null;
     }
 }

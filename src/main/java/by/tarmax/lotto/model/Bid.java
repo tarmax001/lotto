@@ -10,15 +10,15 @@ public class Bid extends AbstractBaseEntity {
     private Set<Integer> balls;
 
     public Bid(LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
-        this(null, playDate, bidDate, amount, balls);
+        this(null, playDate, bidDate, amount, Set.of(balls));
     }
 
-    public Bid(Integer id, LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
+    public Bid(Integer id, LocalDate playDate, LocalDate bidDate, Double amount, Set<Integer> balls) {
         super(id);
         this.playDate = playDate;
         this.bidDate = bidDate;
         this.amount = amount;
-        this.balls = Set.of(balls);
+        this.balls = balls;
     }
 
     public LocalDate getPlayDate() {
@@ -51,5 +51,17 @@ public class Bid extends AbstractBaseEntity {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "id=" + id +
+
+                ", playDate=" + playDate +
+                ", bidDate=" + bidDate +
+                ", amount=" + amount +
+                ", balls=" + balls +
+                '}';
     }
 }
