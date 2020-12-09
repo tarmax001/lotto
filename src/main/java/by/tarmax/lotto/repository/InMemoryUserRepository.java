@@ -5,9 +5,11 @@ import by.tarmax.lotto.model.User;
 import by.tarmax.lotto.util.UserUtil;
 import org.springframework.stereotype.Repository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryUserRepository implements UserRepository{
@@ -25,8 +27,7 @@ public class InMemoryUserRepository implements UserRepository{
             users.put(id, user);
             return user;
         }
-        return users.computeIfAbsent(user.getId(), u -> users.put(user.getId(), user)); //TODO check
-//        return users.computeIfPresent(user.getId(), (id, oldUser) -> user);
+        return users.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override
@@ -42,13 +43,15 @@ public class InMemoryUserRepository implements UserRepository{
     @Override
     public User getByEmail(String email) {
         return users.values().stream()
-                .filter(user -> user.getEmail().equalsIgnoreCase(email))
+                .filter(user -> email.equalsIgnoreCase(user.getEmail()))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
     public List<User> getAll() {
-        return List.copyOf(users.values());
+        return users.values().stream()
+                .sorted(Comparator.comparing(User::getName).thenComparing(User::getEmail))
+                .collect(Collectors.toList());
     }
 }

@@ -8,11 +8,9 @@ import by.tarmax.lotto.web.BidServlet;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -27,8 +25,8 @@ public class InMemoryBidRepository implements BidRepository{
     }
 
     @Override
-    public Bid save(int userId, Bid bid) {
-        Map<Integer, Bid> userBids = bids.getOrDefault(userId, new HashMap<>());
+    public Bid save(int userId, Bid bid) { //TODO test and compare
+        Map<Integer, Bid> userBids = bids.getOrDefault(userId, new ConcurrentHashMap<>());
         if (bid.isNew()) {
             int id = AbstractBaseEntity.counter.incrementAndGet();
             bid.setId(id);
@@ -51,8 +49,10 @@ public class InMemoryBidRepository implements BidRepository{
     }
 
     @Override
-    public Collection<Bid> getAll(int userId) {
+    public List<Bid> getAll(int userId) {
         Map<Integer, Bid> userBids = bids.get(userId);
-        return userBids != null ? userBids.values() : Collections.EMPTY_LIST; //TODO
+        return userBids != null ? userBids.values().stream()
+                .sorted(Comparator.comparing(Bid::getPlayDate))
+                .collect(Collectors.toList()) : Collections.emptyList();
     }
 }

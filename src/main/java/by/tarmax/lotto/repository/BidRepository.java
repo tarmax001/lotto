@@ -3,6 +3,7 @@ package by.tarmax.lotto.repository;
 import by.tarmax.lotto.model.Bid;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface BidRepository {
     Bid save(int userId, Bid bid);
@@ -11,5 +12,5 @@ public interface BidRepository {
 
     Bid get(int userId, int id);
 
-    Collection<Bid> getAll(int userId);
+    List<Bid> getAll(int userId);
 }
