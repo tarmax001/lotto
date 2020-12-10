@@ -1,7 +1,9 @@
 package by.tarmax.lotto.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Bid extends AbstractBaseEntity {
     private LocalDate playDate;
@@ -11,6 +13,10 @@ public class Bid extends AbstractBaseEntity {
 
     public Bid(LocalDate playDate, LocalDate bidDate, Double amount, Integer... balls) {
         this(null, playDate, bidDate, amount, Set.of(balls));
+    }
+
+    public Bid(LocalDate playDate, LocalDate bidDate, Double amount, Set<Integer> balls) {
+        this(null, playDate, bidDate, amount, balls);
     }
 
     public Bid(Integer id, LocalDate playDate, LocalDate bidDate, Double amount, Set<Integer> balls) {
