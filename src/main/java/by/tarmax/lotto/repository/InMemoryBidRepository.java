@@ -4,12 +4,15 @@ import by.tarmax.lotto.SecurityUtil;
 import by.tarmax.lotto.model.AbstractBaseEntity;
 import by.tarmax.lotto.model.Bid;
 import by.tarmax.lotto.util.BidUtil;
+import by.tarmax.lotto.util.TimeUtil;
 import by.tarmax.lotto.web.BidServlet;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -50,9 +53,19 @@ public class InMemoryBidRepository implements BidRepository{
 
     @Override
     public List<Bid> getAll(int userId) {
-        Map<Integer, Bid> userBids = bids.get(userId);
-        return userBids != null ? userBids.values().stream()
-                .sorted(Comparator.comparing(Bid::getPlayDate))
-                .collect(Collectors.toList()) : Collections.emptyList();
+        return filterByPredicate(userId, bid -> true);
     }
+
+    @Override
+    public List<Bid> getBetweenPlayDates(int userId, LocalDate start, LocalDate end) {
+        return filterByPredicate(userId, bid -> TimeUtil.isBetweenHalfOpen(bid.getPlayDate(), start, end));
+    }
+
+   private List<Bid> filterByPredicate(int userId, Predicate<Bid> filter) {
+       Map<Integer, Bid> userBids = bids.get(userId);
+       return userBids != null ? userBids.values().stream()
+               .filter(filter)
+               .sorted(Comparator.comparing(Bid::getPlayDate))
+               .collect(Collectors.toList()) : Collections.emptyList();
+   }
 }

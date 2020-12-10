@@ -2,7 +2,7 @@ package by.tarmax.lotto.repository;
 
 import by.tarmax.lotto.model.Bid;
 
-import java.util.Collection;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BidRepository {
@@ -13,4 +13,6 @@ public interface BidRepository {
     Bid get(int userId, int id);
 
     List<Bid> getAll(int userId);
+
+    List<Bid> getBetweenPlayDates(int userId, LocalDate start, LocalDate end);
 }
