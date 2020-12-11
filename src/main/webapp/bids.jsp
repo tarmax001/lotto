@@ -15,9 +15,23 @@
     </style>
 </head>
 <body>
+<h3><a href="index.jsp">Home</a></h3>
+<hr/>
 <section>
-    <h3><a href="index.jsp">Home</a></h3>
-    <hr/>
+    <form action="bids">
+        <input name="action" value="filter" hidden>
+        <dl>
+            <dt>Date from:</dt>
+            <dd><input type="date" name="from"></dd>
+        </dl>
+        <dl>
+            <dt>Date to:</dt>
+            <dd><input type="date" name="to"></dd>
+        </dl>
+        <button type="submit">Filter</button>
+    </form>
+</section>
+<section>
     <h2>Bids</h2>
     <a href="bids?action=create">Create</a>
     <table border="1" cellpadding="8" cellspacing="0">

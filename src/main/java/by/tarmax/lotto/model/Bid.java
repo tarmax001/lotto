@@ -1,9 +1,7 @@
 package by.tarmax.lotto.model;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Bid extends AbstractBaseEntity {
     private LocalDate playDate;

@@ -1,5 +1,8 @@
 package by.tarmax.lotto.util;
 
+import org.springframework.lang.Nullable;
+import org.springframework.util.StringUtils;
+
 import java.time.LocalDate;
 
 public class TimeUtil {
@@ -16,5 +19,9 @@ public class TimeUtil {
 
     public static LocalDate valueOrMax(LocalDate localDate) {
         return localDate != null ? localDate : MAX_DATE;
+    }
+
+    public static @Nullable LocalDate parseLocalDate(@Nullable String str) {
+        return StringUtils.isEmpty(str) ? null : LocalDate.parse(str);
     }
 }

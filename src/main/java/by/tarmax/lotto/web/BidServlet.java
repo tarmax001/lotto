@@ -3,6 +3,7 @@ package by.tarmax.lotto.web;
 import by.tarmax.lotto.model.Bid;
 import by.tarmax.lotto.util.BidUtil;
 import by.tarmax.lotto.util.PairUtil;
+import by.tarmax.lotto.util.TimeUtil;
 import by.tarmax.lotto.web.bid.BidRestController;
 import org.slf4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -48,6 +49,13 @@ public class BidServlet extends HttpServlet {
                 req.setAttribute("bid", bid);
                 req.setAttribute("balls", PairUtil.ALL_KENO_BALLS);
                 req.getRequestDispatcher("/bidForm.jsp").forward(req, resp);
+                break;
+            case "filter":
+                LocalDate from = TimeUtil.parseLocalDate(req.getParameter("from"));
+                LocalDate to = TimeUtil.parseLocalDate(req.getParameter("to"));
+                log.info("Get all filtered from {} to {}", from, to);
+                req.setAttribute("bids", BidUtil.getWithGain(controller.getBetween(from, to), BidUtil.kenoPlays));
+                req.getRequestDispatcher("/bids.jsp").forward(req, resp);
                 break;
             case "all":
             default:
