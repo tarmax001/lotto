@@ -6,10 +6,13 @@
 </head>
 <body>
 <hr>
-<ul>
-    <li><a href="users">Users</a></li>
-    <li><a href="bids">Bids</a></li>
-    <li><a href="pairs">Pairs</a></li>
-</ul>
+<form action="users" method="post">
+    <select name="userId">
+        <option value="10000">Admin</option>
+        <option value="10001">User</option>
+    </select>
+    <button type="submit">Select</button>
+</form>
+<a href="pairs">Pairs</a>
 </body>
 </html>
